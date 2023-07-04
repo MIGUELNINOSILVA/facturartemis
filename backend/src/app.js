@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import categoriasRoutes from './routes/categorias.routes.js';
 import clientesRoutes from './routes/clientes.routes.js';
 import correosRoutes from './routes/correos.routes.js';
@@ -13,8 +14,9 @@ import ubicacionesRoutes from './routes/ubicaciones.routes.js';
 
 
 const app = express();
-
+app.use(cors());
 app.set('port', 7001);
+
 
 //Rutas
 app.use('/api/categorias', categoriasRoutes);

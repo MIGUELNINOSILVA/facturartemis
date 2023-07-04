@@ -11,6 +11,20 @@ async function getAllCategorias(req, res) {
     }
 }
 
+async function insertCategorias(req, res) {
+    try {
+        const response = await getConnection();
+        const data = req.body;
+        console.log(data);
+        // const result = await response.query("INSERT INTO categorias")
+        res.json(data);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
 export const methodsHTTP = {
-    getAllCategorias
+    getAllCategorias,
+    insertCategorias
 }
