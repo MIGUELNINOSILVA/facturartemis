@@ -25,6 +25,15 @@ export async function insertCategorias(data) {
         console.log(error);
     }
 }
+export async function getCategoria(id){
+    try {
+        const extract = await fetch(`${url}/${id}`);
+        const datos = await extract.json();
+        return datos;
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 export async function deleteCategorias(id) {
     try {

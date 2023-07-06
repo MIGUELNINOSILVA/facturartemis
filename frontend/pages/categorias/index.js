@@ -1,22 +1,35 @@
-import { getCategorias , insertCategorias, deleteCategorias} from "./API.js";
+import {
+    getCategorias,
+    insertCategorias,
+    deleteCategorias,
+    getCategoria
+} from "./API.js";
 
-document.addEventListener("DOMContentLoaded", ()=>{
+document.addEventListener("DOMContentLoaded", () => {
     loadContent();
 });
 
-async function loadContent(){
+async function loadContent() {
     const data = await getCategorias();
     const table = document.querySelector("#insert");
     console.log(data);
     data.forEach(categoria => {
-        const {CategoriaID, CategoriaNombre, Descripcion, Imagen} = categoria;
+        const {
+            CategoriaID,
+            CategoriaNombre,
+            Descripcion,
+            Imagen
+        } = categoria;
         table.innerHTML += `
         <tr>
             <td>${CategoriaID}</td>
             <td>${CategoriaNombre}</td>
             <td>${Descripcion}</td>
             <td style="height :1rem; width:1rem;">${Imagen}</td>
-            <td><a class="btn btn-warning">Editar</a></td>
+            
+            <td><button type="button" class="btn btn-warning edit" data-bs-toggle="modal" data-bs-target="#modalCategoriaEditar" id="${CategoriaID}">
+            Editar
+        </button> </td>
             <td><button class="btn btn-danger delete" id="${CategoriaID}">Eliminar</button></td>
         </tr>
         `
@@ -32,25 +45,34 @@ formularioCategoria.addEventListener('submit', (e) => {
     const CategoriaImagen = document.querySelector('#CategoriaImagen').value;
 
     const data = {
-        CategoriaNombre : CategoriaNombre,
-        Descripcion : CategoriaDescripcion,
-        Imagen : CategoriaImagen
+        CategoriaNombre: CategoriaNombre,
+        Descripcion: CategoriaDescripcion,
+        Imagen: CategoriaImagen
     }
 
-    console.log(data);
     insertCategorias(data);
 
 });
 
 const table = document.querySelector('#insert');
 
-table.addEventListener('click',(e)=>{
+table.addEventListener('click', (e) => {
     if (e.target.classList.contains('delete')) {
-        console.log(e.target.getAttribute('id'));
         const id = e.target.getAttribute('id');
         const confir = confirm('Deseas eliminar el dato?');
         if (confir) {
             deleteCategorias(id);
         }
     }
+    if (e.target.classList.contains('edit')) {
+        const id = e.target.getAttribute('id');
+        editarCategoria(id);
+    }
 })
+
+async function editarCategoria(id) {
+    const data = await getCategoria(id);
+    console.log(data[0]); {
+        
+    }
+}
