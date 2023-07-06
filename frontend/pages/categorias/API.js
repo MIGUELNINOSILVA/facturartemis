@@ -25,3 +25,15 @@ export async function insertCategorias(data) {
         console.log(error);
     }
 }
+
+export async function deleteCategorias(id) {
+    try {
+        await fetch(`${url}/${id}`,
+        {
+            method: 'DELETE'
+        });
+        window.location = "categorias.html";
+    } catch (error) {
+        console.log();
+    }
+}

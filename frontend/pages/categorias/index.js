@@ -1,4 +1,4 @@
-import { getCategorias , insertCategorias} from "./API.js";
+import { getCategorias , insertCategorias, deleteCategorias} from "./API.js";
 
 document.addEventListener("DOMContentLoaded", ()=>{
     loadContent();
@@ -17,12 +17,7 @@ async function loadContent(){
             <td>${Descripcion}</td>
             <td style="height :1rem; width:1rem;">${Imagen}</td>
             <td><a class="btn btn-warning">Editar</a></td>
-            <td><a class="btn btn-danger">Eliminar</a></td>
-            <td>
-            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalCategoriaEditar">
-                Editar
-            </button>
-          </td>
+            <td><button class="btn btn-danger delete" id="${CategoriaID}">Eliminar</button></td>
         </tr>
         `
     });
@@ -45,4 +40,17 @@ formularioCategoria.addEventListener('submit', (e) => {
     console.log(data);
     insertCategorias(data);
 
+});
+
+const table = document.querySelector('#insert');
+
+table.addEventListener('click',(e)=>{
+    if (e.target.classList.contains('delete')) {
+        console.log(e.target.getAttribute('id'));
+        const id = e.target.getAttribute('id');
+        const confir = confirm('Deseas eliminar el dato?');
+        if (confir) {
+            deleteCategorias(id);
+        }
+    }
 })
