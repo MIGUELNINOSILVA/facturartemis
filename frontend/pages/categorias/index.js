@@ -18,6 +18,11 @@ async function loadContent(){
             <td style="height :1rem; width:1rem;">${Imagen}</td>
             <td><a class="btn btn-warning">Editar</a></td>
             <td><a class="btn btn-danger">Eliminar</a></td>
+            <td>
+            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalCategoriaEditar">
+                Editar
+            </button>
+          </td>
         </tr>
         `
     });

@@ -28,7 +28,33 @@ async function insertCategorias(req, res) {
     }
 }
 
+async function getCategoria(req, res) {
+    try {
+        const connection = await getConnection();
+        const {id} = req.params;
+        const result = await connection.query("SELECT CategoriaID, CategoriaNombre, Descripcion, Imagen FROM categorias WHERE CategoriaID = ?", id);
+        res.json(result);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
+async function deleteCategorias(req, res) {
+    try {
+        const response = await getConnection();
+        const { id } = req.params;
+        const result = await response.query("DELETE FROM categorias WHERE CategoriaID = ?", id);
+        res.json(result);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
 export const methodsHTTP = {
     getAllCategorias,
-    insertCategorias
+    insertCategorias,
+    getCategoria,
+    deleteCategorias
 }
