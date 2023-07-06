@@ -72,7 +72,35 @@ table.addEventListener('click', (e) => {
 
 async function editarCategoria(id) {
     const data = await getCategoria(id);
-    console.log(data[0]); {
-        
+    const dataJson = {
+        CategoriaID: data[0].CategoriaID,
+        CategoriaNombre: data[0].CategoriaNombre,
+        Descripcion: data[0].Descripcion,
+        Imagen: data[0].Imagen
     }
+    formularioEdit(dataJson);
+}
+
+function formularioEdit(data) {
+    console.log(data);
+    const formularioCategoriaEdit = document.querySelector('#formularioCategoriaEdit');
+    const CategoriaNombreEdit = document.querySelector('#CategoriaNombreEdit');
+    const CategoriaDescripcionEdit = document.querySelector('#CategoriaDescripcionEdit');
+    const CategoriaImagenEdit = document.querySelector('#CategoriaImagenEdit');
+
+    // Asignar los valores al formulario
+    CategoriaNombreEdit.value = data.CategoriaNombre;
+    CategoriaDescripcionEdit.value = data.Descripcion;
+    CategoriaImagenEdit.value = data.Imagen;
+
+    formularioCategoriaEdit.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const nuevoJson = {
+            CategoriaNombre: CategoriaNombreEdit.value,
+            Descripcion: CategoriaDescripcionEdit.value,
+            Imagen: CategoriaImagenEdit.value
+        }
+        console.log(nuevoJson);
+        
+    })
 }

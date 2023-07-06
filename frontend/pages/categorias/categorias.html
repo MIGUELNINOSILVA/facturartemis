@@ -91,7 +91,7 @@
                 <label for="Imagen" class="col-form-label">Imagen:</label>
                 <input type="text" class="form-control formTam" id="CategoriaImagen" required/>
               </div>
-
+            
           </div>
           <div class="modal-footer">
             <button
@@ -160,12 +160,29 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+        <form id="formularioCategoriaEdit" class="form-select-lg mb-3" method="POST">
+           
+          <div class="mb-3">
+            <label for="CategoriaNombre" class="col-form-label">Categoria Nombre:</label>
+            <input type="text" class="form-control formTam" id="CategoriaNombreEdit" required/>
+          </div>
+         
+          <div class="mb-3">
+            <label for="Descripcion" class="col-form-label">Descripcion:</label>
+            <input type="text" class="form-control formTam" id="CategoriaDescripcionEdit" required/>
+          </div>
+
+          <div class="mb-3">
+            <label for="Imagen" class="col-form-label">Imagen:</label>
+            <input type="text" class="form-control formTam" id="CategoriaImagenEdit" required/>
+          </div>
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Actualizar</button>
+        <button type="submit" class="btn btn-primary" >Actualizar</button>
       </div>
+    </form>
     </div>
   </div>
 </div>
