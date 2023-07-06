@@ -10,3 +10,18 @@ export async function getCategorias(){
         console.log(error);
     }
 }
+
+export async function insertCategorias(data) {
+    try {
+        await fetch(url, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method : 'POST',
+            body: JSON.stringify(data)
+        });
+        window.location = "categorias.html";
+    } catch (error) {
+        console.log(error);
+    }
+}

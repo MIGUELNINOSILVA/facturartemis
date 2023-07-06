@@ -1,4 +1,4 @@
-import { getCategorias } from "./API.js";
+import { getCategorias , insertCategorias} from "./API.js";
 
 document.addEventListener("DOMContentLoaded", ()=>{
     loadContent();
@@ -25,8 +25,19 @@ async function loadContent(){
 
 const formularioCategoria = document.querySelector('#formularioCategoria');
 
-formularioCategoria.addEventListener('submit', () => {
-    const CategoriaNombre = document.querySelector('#CategoriaNombre');
-    const CategoriaDescripcion = document.querySelector('#CategoriaDescripcion');
-    
+formularioCategoria.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const CategoriaNombre = document.querySelector('#CategoriaNombre').value;
+    const CategoriaDescripcion = document.querySelector('#CategoriaDescripcion').value;
+    const CategoriaImagen = document.querySelector('#CategoriaImagen').value;
+
+    const data = {
+        CategoriaNombre : CategoriaNombre,
+        Descripcion : CategoriaDescripcion,
+        Imagen : CategoriaImagen
+    }
+
+    console.log(data);
+    insertCategorias(data);
+
 })
