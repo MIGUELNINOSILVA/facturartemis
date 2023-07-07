@@ -96,6 +96,7 @@ function formularioEdit(data) {
     formularioCategoriaEdit.addEventListener('submit', (e) => {
         e.preventDefault();
         const nuevoJson = {
+            CategoriaID :data.CategoriaID,
             CategoriaNombre: CategoriaNombreEdit.value,
             Descripcion: CategoriaDescripcionEdit.value,
             Imagen: CategoriaImagenEdit.value

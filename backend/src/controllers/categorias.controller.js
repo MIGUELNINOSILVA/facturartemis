@@ -40,6 +40,25 @@ async function getCategoria(req, res) {
     }
 }
 
+async function updateCategoria(req, res) {
+    try {
+        const connection = await getConnection();
+        const {id} = req.params;
+        const {CategoriaNombre, Descripcion, Imagen} = req.body;
+        const category = {
+            CategoriaNombre,
+            Descripcion,
+            Imagen
+        }
+        const result = await connection.query("UPDATE categorias SET ? WHERE CategoriaID = ?",[category, id] );
+        res.json(result);
+
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
 async function deleteCategorias(req, res) {
     try {
         const response = await getConnection();
@@ -56,5 +75,6 @@ export const methodsHTTP = {
     getAllCategorias,
     insertCategorias,
     getCategoria,
-    deleteCategorias
+    deleteCategorias,
+    updateCategoria
 }
