@@ -2,7 +2,8 @@ import {
     getCategorias,
     insertCategorias,
     deleteCategorias,
-    getCategoria
+    getCategoria,
+    updateCategoria
 } from "./API.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -96,11 +97,11 @@ function formularioEdit(data) {
     formularioCategoriaEdit.addEventListener('submit', (e) => {
         e.preventDefault();
         const nuevoJson = {
-            CategoriaID :data.CategoriaID,
             CategoriaNombre: CategoriaNombreEdit.value,
             Descripcion: CategoriaDescripcionEdit.value,
             Imagen: CategoriaImagenEdit.value
         }
+        updateCategoria(nuevoJson, data.CategoriaID);
         console.log(nuevoJson);
         
     })

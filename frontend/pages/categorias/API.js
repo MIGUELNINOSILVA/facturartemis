@@ -35,6 +35,21 @@ export async function getCategoria(id){
     }
 }
 
+export async function updateCategoria(data, id) {
+    try {
+        const connection = await fetch(`${url}/${id}`, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'PUT',
+            body: JSON.stringify(data)
+        });
+        window.location = 'categorias.html';
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export async function deleteCategorias(id) {
     try {
         await fetch(`${url}/${id}`,
